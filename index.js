@@ -1,6 +1,6 @@
 const express = require("express");
-const connectToDatabase = require("./src/database/database");
-const usuario = require("./src/router/user-router");
+const connectToDatabase = require("./src/database/database"); // conexão mongodb
+const usuario = require("./src/router/user-router"); // rotas do usuário
 
 const app = express();
 
@@ -8,10 +8,9 @@ const port = 3021;
 
 app.use(express.json());
 
-connectToDatabase();
+connectToDatabase(); // conectando ao banco
 
-// rotas
-app.use("/usuario", usuario);
+app.use("/usuario", usuario); // puxando as rotas
 
 app.get("/", (req, res) => {
     res.send({

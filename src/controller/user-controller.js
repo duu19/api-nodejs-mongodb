@@ -78,7 +78,7 @@ const removeUserAddressController = async (req, res) => {
 };
 
 // adicionar produto favorito
-const addUserFavProduct = async (req, res) => {
+const addUserFavProductController = async (req, res) => {
     try{
 
     }catch (err){
@@ -89,7 +89,7 @@ const addUserFavProduct = async (req, res) => {
 };
 
 // deletar produto favorito
-const removeUserFavProduct = async (req, res) => {
+const removeUserFavProductController = async (req, res) => {
     try{
 
     }catch (err){
@@ -107,6 +107,6 @@ module.exports = {
     removeUserController,
     addUserAddressController,
     removeUserAddressController,
-    addUserFavProduct,
-    removeUserFavProduct
+    addUserFavProductController,
+    removeUserFavProductController
 };

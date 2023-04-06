@@ -17,7 +17,7 @@ router.post("/create", usuarioController.createUserController);
 router.post("/addAddress/:id", usuarioController.addUserAddressController);
 
 // buscar produto favorito
-router.post("/addFavProduct/:id", usuarioController.addUserFavProduct);
+router.post("/addFavProduct/:id", usuarioController.addUserFavProductController);
 
 // atualizar usuário
 router.put("/update/:id", usuarioController.updateUserController);
@@ -29,6 +29,6 @@ router.delete("/remove/:id", usuarioController.removeUserController);
 router.delete("/removeAddress", usuarioController.removeUserAddressController);
 
 // deletar produto favorito
-router.delete("/removeFavProduct", usuarioController.removeUserFavProduct);
+router.delete("/removeFavProduct", usuarioController.removeUserFavProductController);
 
 module.exports = router;
