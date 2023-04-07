@@ -74,13 +74,15 @@ const updateUserController = async (req, res) => {
 // deletar usuário
 const removeUserController = async (req, res) => {
     try{
-        const deleteUser = await userService.removeUserService(req.params.id);
+        const deletedUser = await userService.removeUserService(req.params.id);
 
         // verificar se algo foi deletado
-        if(deleteUser.deletedCount > 0){
-            res.status(200).send({ message: "Usuário deletado."})
+        
+        if(deletedUser == null){
+        console.log(deletedUser);
+            res.status(404).send({ message: "Usuário não encontrado.."})
         }else{
-            res.status(404).send({ message: "Usuário não encontrado."})
+            res.status(200).send({ message: "Usuário deletado."})
         }
 
     }catch (err){
@@ -93,18 +95,31 @@ const removeUserController = async (req, res) => {
 // adicionar endereço
 const addUserAddressController = async (req, res) => {
     try{
+        req.body.createdAt = new Date();
+        const endereco = await userService.addUserAddressService(req.params.id, req.body);
+
+        if(endereco.ok == 1){
+            res.status(201).send({ message: "Endereço adicionado com sucesso."});
+        }else{
+            res.status(400).send({ message: "Não foi possível adicionar o endereço."});
+        }
 
     }catch (err){
-        // não retornar erro direto ao usuário
         console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Houve um erro no servidor, tente novamente mais tarde.`});
+        return res.status(500).send({ message: `Houve um erro no servidor, tente novamente mais tarde.`});  
     }
 };
 
 // remover endereço
 const removeUserAddressController = async (req, res) => {
     try{
+        const endereco = await userService.removeUserAddressService(req.body.id, req.body.addressId);
 
+        if(endereco.ok == 1){
+            res.status(200).send({ message: "Endereço removido com sucesso."});
+        }else{
+            res.status(400).send({ message: "Não foi possível remover o endereço."});
+        }
     }catch (err){
         // não retornar erro direto ao usuário
         console.log(`erro: ${err.message}`);

@@ -6,25 +6,25 @@ const UsuarioSchema = new mongoose.Schema({
     email: { type: String, unique: true,required: true},
     senha: { type: String, required: true},
     imagem: { type: String, required: true},
-    endereços: [
+    enderecos: [
         {
             rua: { type: String, required: true},
             numero: { type: Number, required: true},
             complemento: { type: String, required: false},
             CEP: { type: String, required: true},
-            createAt: {type: Date, required: true},
+            createAt: {type: Date, required: true, default: Date.now()},
         }
     ],
-    createAt: {type: Date, required: true},
-    produtos_favs: [
-        {
-            // ID referenciado ao produtos
-            _id: {type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "produtos"},
-            createAt: {type: Date, required: true}
-        }
-    ],
-    // definir padrão(false) ao criar user adm s/n
-    admin: { type: Boolean, required: true, default: false},
+    createAt: {type: Date, default: Date.now()},
+    // produtos_favs: [
+    //     {
+    //         // ID referenciado ao produtos
+    //         _id: {type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "produtos"},
+    //         createAt: {type: Date, default: Date.now()}
+    //     }
+    // ],
+    // // definir padrão(false) ao criar user adm s/n
+    // admin: { type: Boolean, required: true, default: false},
 });
 
 const Usuario = mongoose.model("usuarios", UsuarioSchema);

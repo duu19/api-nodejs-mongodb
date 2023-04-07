@@ -4,7 +4,7 @@ const usuario = require("./src/router/user-router"); // rotas do usuário
 
 const app = express();
 
-const port = 3021;
+const port = 3025;
 
 app.use(express.json());
 
@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
     res.send({
         message: "Seja bem vindo ao nosso e-commerce!"
     });
-})
+});
 
 app.listen(port, () => {
     console.log(`server on: http://localhost:${port}`);
-})
+});
