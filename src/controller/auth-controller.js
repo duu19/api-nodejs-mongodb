@@ -1,5 +1,5 @@
 // autenticação login
-const authService = require("../services/service-auth");
+const authService = require("../services/auth-services");
 const bcrypt = require("bcrypt");
 
 const loginController = async (req, res) => {
