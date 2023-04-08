@@ -4,8 +4,11 @@ const router = express.Router();
 // passar controller nas rotas
 const usuarioController = require("../controller/user-controller");
 
+// token
+const authMiddleware = require("../middleware/auth-middle");
+
 // buscar usuário por ID específico
-router.get("/findByID:id", usuarioController.findUserByIdController);
+router.get("/findById:id", authMiddleware, usuarioController.findUserByIdController);
 
 // buscar todos usuários
 router.get("/findAll", usuarioController.findAllUsersController);

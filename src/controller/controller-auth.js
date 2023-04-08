@@ -18,7 +18,7 @@ const loginController = async (req, res) => {
     }
 
     // gerar token baseado no ID
-    const token = authService.gerenateToken(user.id);
+    const token = authService.generateToken(user.id);
 
     res.status(200).send({
         email,

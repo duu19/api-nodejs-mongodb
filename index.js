@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config(); // dotenv antes de qlqr arquivo (security - substituir)
 const connectToDatabase = require("./src/database/database"); // conexão mongodb
 const usuario = require("./src/router/user-router"); // rotas do usuário
 const auth = require("./src/router/router-auth");
