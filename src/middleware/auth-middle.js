@@ -9,10 +9,11 @@ module.exports = async (req, res, next) => {
         return res.status(401).send({ message: "Informe o token para prosseguir."});
     }
 
-    const parts = authHeader.split(" "); // (1-bearer, 2-<token>)
+    // (1-bearer, 2-<token>)
+    const parts = authHeader.split(" ");
 
-    if(parts.lenght !== 2){
-        return res.status(401).send({ message: "Token inválido."});
+    if(parts.length !== 2){
+        return res.status(401).send({ message: "Token inválido1."});
     }
 
     const [schema, token] = parts;
@@ -23,13 +24,13 @@ module.exports = async (req, res, next) => {
 
     jwt.verify(token, process.env.SECRET, async (err, decoded) => {
         if(err){
-            return res.status(500).send({ message: "Token inválido."});
+            return res.status(500).send({ message: "Token inválido2."});
         }
 
         const user = await findUserByIdService(decoded.id);
 
         if(!user || !user.id){
-            return res.status(401).send({ message: "Token invalido!"});
+            return res.status(401).send({ message: "Token inválido3!"});
         }
 
         req.userId = decoded.id;
