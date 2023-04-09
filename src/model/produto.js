@@ -8,12 +8,12 @@ const ProdutoSchema = new mongoose.Schema({
     imagem: { type: String, required: true },
     refrigerante: { type: String, unique: true, required: true },
     bordaRecheada: { type: String, required: true },
-    // categoria: [
-    //     {
-    //         _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "categorias" },
-    //         createdAt: { type: Date, required: true }
-    //     },
-    // ],
+     categoria: [
+         {
+             _id: { type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "categorias" },
+             createdAt: { type: Date, required: true }
+         },
+     ],
 });
 
 const Produto = mongoose.model("pizza", ProdutoSchema);

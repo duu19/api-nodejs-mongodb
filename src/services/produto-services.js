@@ -1,3 +1,4 @@
+const Categoria = require("../model/categoria");
 const Produto = require("../model/produto");
 
 // produto específicio
@@ -25,10 +26,50 @@ const deleteProductService = (id) => {
     return Produto.findByIdAndRemove(id);
 };
 
+const addCategoriaProductService = (id, categoria) => {
+    return Produto.findOneAndUpdate(
+        {
+            _id : id
+        },
+        {
+            $push: {
+                categoria: {
+                    _id: categoria._id,
+                    createdAt: categoria.createAt
+                },
+            },
+        },
+        {
+            rawResult: true,
+        }
+    );
+}
+
+// corrigir 
+const removeCategoriaProductService = (id, categoria) => {
+    return Produto.findOneAndUpdate(
+        {
+            _id: id
+        },
+        {
+            $pull: {
+                categoria: {
+                    _id: categoria._id,
+                },
+            },
+        },
+        {
+            rawResult: true,
+        },
+    );
+}
+
 module.exports = {
     findProductByIdService,
     findAllProductsService,
     createProductService,
     updateProductService,
-    deleteProductService
+    deleteProductService,
+    addCategoriaProductService,
+    removeCategoriaProductService
 };

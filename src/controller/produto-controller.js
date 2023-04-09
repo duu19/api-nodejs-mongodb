@@ -51,10 +51,33 @@ const deleteProductController = async (req, res) => {
     }
 };
 
+const addCategoriaProductController = async (req, res) => {
+    try{
+        req.body.createdAt = new Date();
+        const categoria = await produtoService.addCategoriaProductService(req.params.id, req.body);
+
+        res.status(200).send(categoria);
+    }catch(err){
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
+    }
+};
+
+const removeCategoriaProductController = async (req, res) => {
+    try{
+        res.status(200).send(await produtoService.removeCategoriaProductService(req.params.id, req.body));
+    }catch(err){
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
+    }
+};
+
 module.exports = {
     findProductByIdController,
     findAllProductsController,
     createProductController,
     updateProductController,
-    deleteProductController
+    deleteProductController,
+    addCategoriaProductController,
+    removeCategoriaProductController
 };
