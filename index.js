@@ -4,6 +4,7 @@ const connectToDatabase = require("./src/database/database"); // conexão mongod
 const usuario = require("./src/router/user-router"); // rotas do usuário
 const auth = require("./src/router/auth-router");
 const produto = require("./src/router/produto-router"); // rotas dos produtos
+const categoria = require("./src/router/categoria-router"); // rotas das categorias
 
 const app = express();
 
@@ -17,6 +18,7 @@ connectToDatabase(); // conectando ao banco
 app.use("/usuario", usuario); 
 app.use("/auth", auth);
 app.use("/produto", produto);
+app.use("/categoria", categoria)
 
 app.get("/", (req, res) => {
     res.send({
