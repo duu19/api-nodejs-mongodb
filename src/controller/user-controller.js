@@ -99,7 +99,6 @@ const addUserAddressController = async (req, res) => {
 
         if(endereco.value == null){
             res.status(400).send({ message: "Houve um erro, tente novamente mais tarde."});
-            res.status(201).send({ message: "Endereço adicionado com sucesso."});
         }else{
             res.status(201).send({ message: "Endereço adicionado com sucesso."});
         }
@@ -137,18 +136,17 @@ const removeUserAddressController = async (req, res) => {
 // adicionar produto favorito
 const addUserFavProductController = async (req, res) => {
     try{
-
+        res.status(201).send(await userService.addUserFavProductService(req.params.id, req.body));
     }catch (err){
-        // não retornar erro direto ao usuário
         console.log(`erro: ${err.message}`);
-        return res.status(500).send({ message: `Houve um erro no servidor, tente novamente mais tarde.`});
+        return res.status(404).send({ message: "Ocorreu um erro no servidor."});  
     }
 };
 
 // deletar produto favorito
 const removeUserFavProductController = async (req, res) => {
     try{
-
+        res.status(200).send(await userService.removeUserFavProductService(req.params.id, req.body));
     }catch (err){
         // não retornar erro direto ao usuário
         console.log(`erro: ${err.message}`);

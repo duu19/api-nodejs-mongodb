@@ -16,16 +16,16 @@ const UsuarioSchema = new mongoose.Schema({
             createAt: {type: Date, required: true, default: Date.now()},
         }
     ],
-    createAt: {type: Date, required: true, default: Date.now()},
-    // produtos_favs: [
-    //     {
-    //         // ID referenciado ao produtos
-    //         _id: {type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "produtos"},
-    //         createAt: {type: Date, default: Date.now()}
-    //     }
-    // ],
-    // // definir padrão(false) ao criar user adm s/n
-    // admin: { type: Boolean, required: true, default: false},
+     produtos_favs: [
+         {
+              // ID referenciado ao produtos
+              _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: "pizzas"},
+              createdAt: { type: Date, default: Date.now()},
+         }
+     ],
+      // definir padrão(false) ao criar user adm s/n
+     createAt: {type: Date, required: true, default: Date.now()},
+     admin: { type: Boolean, required: true, default: false},
 });
 
 UsuarioSchema.pre("save", async function(next) {
@@ -35,6 +35,7 @@ UsuarioSchema.pre("save", async function(next) {
     next();
 });
 
+// criptografar senha
 UsuarioSchema.pre("findOneAndUpdate", async function(next) {
     if(this._update.senha){
         this._update.senha = await bcrypt.hash(this._update.senha, 10);

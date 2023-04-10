@@ -32,6 +32,6 @@ router.delete("/remove/:id", usuarioController.removeUserController);
 router.delete("/removeAddress", usuarioController.removeUserAddressController);
 
 // deletar produto favorito
-router.delete("/removeFavProduct", usuarioController.removeUserFavProductController);
+router.delete("/removeFavProduct/:id", usuarioController.removeUserFavProductController);
 
 module.exports = router;
