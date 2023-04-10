@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const ProdutoSchema = new mongoose.Schema({
-    pizzaSabor: { type: String, unique: true, required: true },
+    pizzaSabor: { type: String, required: true, unique: true },
     descricao: { type: String, required: true },
     tamanho: { type: String, required: true },
     precoUnidade: { type: Number, required: true },
     imagem: { type: String, required: true },
-    refrigerante: { type: String, unique: true, required: true },
+    refrigerante: { type: String, required: true },
     bordaRecheada: { type: String, required: true },
      categorias: [
          {
@@ -16,6 +16,6 @@ const ProdutoSchema = new mongoose.Schema({
      ],
 });
 
-const Produto = mongoose.model("pizza", ProdutoSchema);
+const Produto = mongoose.model("pizzas", ProdutoSchema);
 
 module.exports = Produto;

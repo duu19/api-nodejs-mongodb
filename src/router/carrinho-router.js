@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const AuthMiddleware = require("../middleware/auth-middle");
+const authMiddleware = require("../middleware/auth-middle");
 const carrinhoController = require("../controller/carrinho-controller");
 
 // por ID - GET

@@ -1,10 +1,10 @@
 const carrinhoService = require("../services/carrinho-services");
 
-const findCarrinhoByIdController = async (res, req) => {
+const findCarrinhoByIdController = async (req, res) => {
     try{
         res.status(200).send(await carrinhoService.findCarrinhoByIdService(req.params.id));
     }catch(err){
-        res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde."});
+        res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde." });
         console.log(err.message);
     }
 };
@@ -24,7 +24,7 @@ const createCarrinhoController = async (req, res) => {
             ...req.body,
             userId: req.userId,
         }
-        res.status(201).send(await carrinhoService.createCarrinhoService(req.params.id, corpo));
+        res.status(201).send(await carrinhoService.createCarrinhoService(corpo));
     }catch(err){
         res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde."});
         console.log(err.message);
@@ -35,7 +35,7 @@ const updateCarrinhoController = async (req, res) => {
     try{
         res.status(200).send(await carrinhoService.updateCarrinhoService(req.params.id, req.body));
     }catch(err){
-        res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde."});
+        res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde." });
         console.log(err.message);
     }
 };
