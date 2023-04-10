@@ -16,7 +16,7 @@ const UsuarioSchema = new mongoose.Schema({
             createAt: {type: Date, required: true, default: Date.now()},
         }
     ],
-    createAt: {type: Date, default: Date.now()},
+    createAt: {type: Date, required: true, default: Date.now()},
     // produtos_favs: [
     //     {
     //         // ID referenciado ao produtos

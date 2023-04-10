@@ -95,7 +95,6 @@ const removeUserController = async (req, res) => {
 // adicionar endereço
 const addUserAddressController = async (req, res) => {
     try{
-        req.body.createdAt = new Date();
         const endereco = await userService.addUserAddressService(req.params.id, req.body);
 
         if(endereco.value == null){

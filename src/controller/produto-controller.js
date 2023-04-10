@@ -3,7 +3,7 @@ const produtoService = require("../services/produto-services");
 const findProductByIdController = async (req, res) => {
     try{
         res.send(await produtoService.findProductByIdService(req.params.id));
-    }catch{
+    }catch(err){
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
     }
@@ -12,7 +12,7 @@ const findProductByIdController = async (req, res) => {
 const findAllProductsController = async (req, res) => {
     try{
         res.send(await produtoService.findAllProductsService());
-    }catch{
+    }catch(err){
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
     }
@@ -23,7 +23,6 @@ const createProductController = async (req, res) => {
         const corpo = {
             ...req.body,
             userId: req.userId,
-            createdAt: new Date(),
         }
 
         res.status(201).send(await produtoService.createProductService(corpo));
@@ -36,7 +35,7 @@ const createProductController = async (req, res) => {
 const updateProductController = async (req, res) => {
     try{
         res.send(await produtoService.updateProductService(req.params.id, req.body));
-    }catch{
+    }catch(err){
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
     }
@@ -45,7 +44,7 @@ const updateProductController = async (req, res) => {
 const deleteProductController = async (req, res) => {
     try{
         res.send(await produtoService.deleteProductService(req.params.id));
-    }catch{
+    }catch(err){
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
     }
@@ -53,7 +52,6 @@ const deleteProductController = async (req, res) => {
 
 const addCategoriaProductController = async (req, res) => {
     try{
-        req.body.createdAt = new Date();
         const categoria = await produtoService.addCategoriaProductService(req.params.id, req.body);
 
         res.status(200).send(categoria);

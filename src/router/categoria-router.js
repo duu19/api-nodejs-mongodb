@@ -3,15 +3,15 @@ const router = require("express").Router();
 const authMiddleware = require("../middleware/auth-middle");
 const categoriaController = require("../controller/categoria-controller");
 
-// por ID get
+// por ID - GET
 router.get("/find/:id", authMiddleware, categoriaController.findCategoriaByIdController);
-// todas categorias
+// todas categorias - GET
 router.get("/findAll", authMiddleware, categoriaController.findAllCategoriaController);
-// criar post
+// criar - POST
 router.post("/create", authMiddleware, categoriaController.createCategoriaController);
-// atualizar put
+// atualizar - PUT
 router.put("/update/:id", authMiddleware, categoriaController.updateCategoriaController);
-// deletar delete
+// deletar - DEL
 router.delete("/remove/:id", authMiddleware, categoriaController.deleteCategoriaController);
 
 module.exports = router;

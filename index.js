@@ -5,6 +5,7 @@ const usuario = require("./src/router/user-router"); // rotas do usuário
 const auth = require("./src/router/auth-router");
 const produto = require("./src/router/produto-router"); // rotas dos produtos
 const categoria = require("./src/router/categoria-router"); // rotas das categorias
+const carrinho = require("./src/router/carrinho-router"); // rotas do carrinho
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/usuario", usuario);
 app.use("/auth", auth);
 app.use("/produto", produto);
 app.use("/categoria", categoria)
+app.use("/carrinho", carrinho)
 
 app.get("/", (req, res) => {
     res.send({
