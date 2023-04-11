@@ -3,6 +3,7 @@ const pedidoService = require("../services/pedido-services");
 const findPedidoByIdController = async (req, res) => {
     try{
         res.status(200).send(await pedidoService.findPedidoByIdService(req.params.id));
+        console.log("teste");
     }catch(err){
         console.log(`erro: ${err.message}`);
         return res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde123."});

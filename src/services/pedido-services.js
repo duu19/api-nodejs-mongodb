@@ -1,7 +1,12 @@
 const Pedido = require("../model/pedido");
+const mongoose = require("mongoose");
 
 const findPedidoByIdService = (id) => {
-    return Pedido.findById(id);
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        console.log('ID inválido!');
+      } else {
+        return Pedido.findById(id);
+      }
 };
 
 const findAllPedidosByIdService = () => {
