@@ -41,9 +41,19 @@ const removePedidoController = async (req, res) => {
     }
 };
 
+const updateStatusPedidoController = async (req, res) => {
+    try{
+        res.status(200).send(await pedidoService.updateStatusPedidoService(req.params.id));
+    }catch(err){
+        console.log(`erro: ${err.message}`);
+        return res.status(500).send({ message: "Houve um erro, tente novamente mais tarde."});
+    }
+}
+
 module.exports = {
     findPedidoByIdController,
     findAllPedidosController,
     createPedidoController,
-    removePedidoController
+    removePedidoController,
+    updateStatusPedidoController
 };

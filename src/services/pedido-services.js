@@ -22,7 +22,7 @@ const removePedidoService = (id) => {
 };
 
 const updateStatusPedidoService = (id) => {
-    
+    return Pedido.findOneAndUpdate({ _id: id}, { $set: { concluido: true } });
 };
 
 module.exports = {

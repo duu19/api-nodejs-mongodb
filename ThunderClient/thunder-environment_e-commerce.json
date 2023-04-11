@@ -1,0 +1,20 @@
+{
+    "client": "Thunder Client",
+    "environmentName": "e-commerce",
+    "dateExported": "2023-04-11T15:42:38.300Z",
+    "version": "1.0",
+    "variables": [
+        {
+            "name": "baseurl",
+            "value": "http://localhost:"
+        },
+        {
+            "name": "port",
+            "value": "3021"
+        },
+        {
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MzFjM2JmOTUzMzk1N2U0NTkxMjJkYSIsImlhdCI6MTY4MTE1ODE3MiwiZXhwIjoxNjgxMjQ0NTcyfQ.rUxbWO_xGMyhmxAW1nZFMyitBNVUfWT9nIx2SajKNH0"
+        }
+    ]
+}
