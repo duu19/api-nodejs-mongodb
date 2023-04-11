@@ -68,7 +68,7 @@ const addUserFavProductService = (id, produto) => {
         },
         {
             $push: {
-                produtos_favs:{
+                pizzas_favs:{
                     _id: produto._id,
                 }
             }
@@ -76,6 +76,7 @@ const addUserFavProductService = (id, produto) => {
         {
             rawResult: true,
         }
+        
     );
 }
 
@@ -86,7 +87,7 @@ const removeUserFavProductService = (id, produto) => {
         },
         {
             $pull: {
-                produtos_favs:{
+                pizzas_favs:{
                     _id: produto._id,
                 }
             }

@@ -19,6 +19,7 @@ const createPedidoService = (body) => {
 
 const removePedidoService = (id) => {
     return Pedido.findByIdAndRemove(id);
+    
 };
 
 const updateStatusPedidoService = (id) => {

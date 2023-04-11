@@ -16,7 +16,7 @@ const UsuarioSchema = new mongoose.Schema({
             createAt: {type: Date, required: true, default: Date.now()},
         }
     ],
-     produtos_favs: [
+     pizzas_favs: [
          {
               // ID referenciado ao produtos
               _id: { type: mongoose.Schema.Types.ObjectId, unique: true, ref: "pizzas"},
