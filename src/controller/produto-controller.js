@@ -24,6 +24,12 @@ const createProductController = async (req, res) => {
             ...req.body,
             userId: req.userId,
         }
+        
+        // não retornar null
+        if (req.body.categorias === undefined) {
+            req.body.categorias = { default: undefined }
+        };
+
         res.status(201).send(await produtoService.createProductService(corpo));
     }catch(err){
         console.log(`erro: ${err.message}`);

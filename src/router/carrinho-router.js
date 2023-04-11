@@ -3,7 +3,7 @@ const authMiddleware = require("../middleware/auth-middle");
 const carrinhoController = require("../controller/carrinho-controller");
 
 // por ID - GET
-router.get("/find/:id", authMiddleware, carrinhoController.findCarrinhoByIdController);
+router.get("/findById/:id", authMiddleware, carrinhoController.findCarrinhoByIdController);
 // todas categorias - GET
 router.get("/findAll", authMiddleware, carrinhoController.findAllCarrinhosController);
 // criar carrinho - POST
