@@ -7,8 +7,8 @@ const findProductByIdService = (id) => {
 };
 
 // todos produtos
-const findAllProductsService = () => {
-    return Produto.find();
+const findAllProductsService = (limit, offset) => {
+    return Produto.find().limit(limit).skip(offset);
 };
 
 // criar produto

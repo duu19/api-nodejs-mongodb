@@ -6,8 +6,8 @@ const findUserByIdService = (id) => {
 };
 
 // todos usuários
-const findAllUsersService = () => {
-    return Usuario.find();
+const findAllUsersService = (limit, offset) => {
+    return Usuario.find().limit(limit).skip(offset);;
 };
 
 // criar usuário

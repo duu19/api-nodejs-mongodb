@@ -11,7 +11,7 @@ const findCarrinhoByIdController = async (req, res) => {
 
 const findAllCarrinhosController = async (req, res) => {
     try{
-        res.status(200).send(await carrinhoService.findAllCarrinhosService());
+        res.status(200).send(await carrinhoService.findAllCarrinhosService(req.query.limit, req.query.offset));
     }catch(err){
         res.status(500).send({ message: "Ocorreu um erro, tente novamente mais tarde."});
         console.log(err.message);

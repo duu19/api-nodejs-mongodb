@@ -7,12 +7,14 @@ const usuarioController = require("../controller/user-controller");
 // validar token no meio da requisição
 const authMiddleware = require("../middleware/auth-middle");
 const { validarUser, validarId } = require("../middleware/validar-middleware");
+const paginacao = require("../middleware/paginacao-middleware");
+
 
 // buscar usuário por ID específico
 router.get("/findById/:id", authMiddleware, validarId, usuarioController.findUserByIdController);
 
 // buscar todos usuários
-router.get("/findAllUsers", authMiddleware, usuarioController.findAllUsersController);
+router.get("/findAllUsers", authMiddleware, paginacao, usuarioController.findAllUsersController);
 
 // criar usuário
 router.post("/create", validarUser, usuarioController.createUserController);

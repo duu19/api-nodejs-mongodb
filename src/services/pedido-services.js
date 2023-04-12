@@ -9,8 +9,8 @@ const findPedidoByIdService = (id) => {
       }
 };
 
-const findAllPedidosByIdService = () => {
-    return Pedido.find();
+const findAllPedidosByIdService = (limit, offset) => {
+    return Pedido.find().limit(limit).skip(offset);;
 };
 
 const createPedidoService = (body) => {
