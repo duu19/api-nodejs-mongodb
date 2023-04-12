@@ -1,3 +1,25 @@
+const ObjectId = require("mongoose").Types.ObjectId;
+
+const validarLogin = (req, res, next) => {
+    let erros = [];
+    if(!req.body.email){
+        erros.push("email");
+    }
+    if(!req.body.senha){
+        erros.push("senha");
+    }
+
+    if(erros.length == 0){
+        return next();
+    }else{
+        if(erros. length > 1){
+            return res.status(400).send({ message: `Os campos ${erros} precisam ser preenchidos corretamente!`});
+        }else{
+            return res.status(400).send({ message: `O campo ${erros} precisa ser preenchido!`});
+        }
+    }
+};
+
 const validarUser = (req, res, next) => {
     // array de erros acumulados
     let erros = [];
@@ -115,11 +137,22 @@ const validarCarrinhos = (req, res, next) => {
     }
 };
 
+const validarId = (req, res, next) => {
+    if(ObjectId.isValid(req.params.id)){
+        return next();
+    }else{
+        return res.status(400).send({ message: "O ID informado não está correto."});
+    }
+}
+
+
 
 module.exports = {
+    validarLogin,
     validarUser,
     validarProdutos,
     validarCategorias,
     validarPedidos,
-    validarCarrinhos
-}
+    validarCarrinhos,
+    validarId
+};
