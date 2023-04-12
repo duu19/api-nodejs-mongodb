@@ -6,12 +6,12 @@ const usuarioController = require("../controller/user-controller");
 
 // validar token no meio da requisição
 const authMiddleware = require("../middleware/auth-middle");
-const { validarUser, validarId } = require("../middleware/validar-middleware");
+const { validarUser, validarIdParams, validar_IdBody, validarEnderecos } = require("../middleware/validar-middleware");
 const paginacao = require("../middleware/paginacao-middleware");
 
 
 // buscar usuário por ID específico
-router.get("/findById/:id", authMiddleware, validarId, usuarioController.findUserByIdController);
+router.get("/findById/:id", authMiddleware, validarIdParams, usuarioController.findUserByIdController);
 
 // buscar todos usuários
 router.get("/findAllUsers", authMiddleware, paginacao, usuarioController.findAllUsersController);
@@ -20,21 +20,21 @@ router.get("/findAllUsers", authMiddleware, paginacao, usuarioController.findAll
 router.post("/create", validarUser, usuarioController.createUserController);
 
 // conferir endereço
-router.post("/addAddress/:id", authMiddleware, validarId,usuarioController.addUserAddressController);
+router.post("/addAddress/:id", authMiddleware, validarIdParams, validarEnderecos, usuarioController.addUserAddressController);
 
 // buscar produto favorito
-router.post("/addFavProduct/:id", authMiddleware, validarId,usuarioController.addUserFavProductController);
+router.post("/addFavProduct/:id", authMiddleware, validarIdParams, validar_IdBody,usuarioController.addUserFavProductController);
 
 // atualizar usuário
-router.put("/update/:id", authMiddleware, validarId, validarUser, usuarioController.updateUserController);
+router.put("/update/:id", authMiddleware, validarIdParams, validarUser, usuarioController.updateUserController);
 
 // deletar usuário
-router.delete("/remove/:id", authMiddleware, validarId, usuarioController.removeUserController);
+router.delete("/remove/:id", authMiddleware, validarIdParams, usuarioController.removeUserController);
 
 // deletar endereço
 router.delete("/removeAddress", authMiddleware, usuarioController.removeUserAddressController);
 
 // deletar produto favorito
-router.delete("/removeFavProduct/:id", validarId, authMiddleware, usuarioController.removeUserFavProductController);
+router.delete("/removeFavProduct/:id", validarIdParams, authMiddleware, usuarioController.removeUserFavProductController);
 
 module.exports = router;
