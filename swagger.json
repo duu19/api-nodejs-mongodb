@@ -1,0 +1,873 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Pizzaria",
+        "description": "API Completa desenvolvida com NodeJs, Express e MongoDB que retrata um e-commerce relacionado a uma pizzaria.",
+        "contact": {
+            "name": "Eduardo",
+            "email": "duardohenriqe19@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3021/",
+            "description": "API Local NodeJs"
+        }
+    ],
+    "paths": {
+        "/usuario/findAllUsers":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Buscar todos os usuários registrados na API.",
+                "description": "Rota que exibe e lista todos os usuários salvos na API.",
+                "tags": ["Usuários"],
+                "parameters": [
+                    {
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },{
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Ok. Efetuado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "$ref":"#/components/schemas/Users"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },"/usuario/findById/{id}":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Exibe um usuário que corresponde ao ID informado.",
+                "description": "Rota para localizar um usuário específico através do ID informado.",
+                "tags": ["Usuários"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok. Exibe um usuário que corresponde ao ID.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+                
+            }
+        },
+        "/usuario/create":{
+            "post":{
+                "summary": "Cadastrar um novo usuário.",
+                "description": "Rota para criar um novo usuário dentro da API.",
+                "tags": ["Usuários"],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "201":{
+                        "description":"Ok. Usuário criado com sucesso."
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/update/{id}":{
+            "put":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Atualizar um usuário existente.",
+                "description": "Rota para localizar um usuário através do ID informado e alterá-lo.",
+                "tags": ["Usuários"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Usuário atualizado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/remove/{id}":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover um usuário.",
+                "description": "Rota para remover um usuário específico através do ID informado.",
+                "tags": ["Usuários"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Ok. Usuário removido com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/addAddress/{id}":{
+            "post":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Adicionar um endereço ao usuário.",
+                "description": "Rota para adicionar um novo endereço ao usuário selecionado.",
+                "tags": ["Usuários"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/UserAddress"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "201":{
+                        "description":"Ok. Endereço adicionado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/removeAddress":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover um endereço do usuário.",
+                "description": "Rota para remover um endereço do usuário selecionado.",
+                "tags": ["Usuários"],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{
+                                            "type":"string"
+                                        },
+                                        "addressId":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Endereço removido com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/addFavProduct/{id}":{
+            "post":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Adicionar um produto ao usuário.",
+                "description": "Rota para adicionar um produto favorito ao usuário selecionado.",
+                "tags": ["Usuários"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/ProductFavs"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Produto adicionado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/usuario/removeFavProduct/{id}":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover um produto.",
+                "description": "Rota para remover um produto específico através do ID informado.",
+                "tags": ["Usuários"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "_id":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Produto removido com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        }
+
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat":"JWT"
+            }
+        },
+        "schemas":{
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string"
+                    },
+                    "imagem": {
+                        "type": "string"
+                    },
+                    "enderecos": {
+                        "type": "array",
+                        "items":{
+                            "properties": {
+                                "rua": {
+                                    "type": "string"
+                                },
+                                "numero": {
+                                    "type": "number"
+                                },
+                                "complemento": {
+                                    "type": "string"
+                                },
+                                "CEP": {
+                                    "type": "string"
+                                },
+                                "createdAt": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "pizzas_favs": {
+                        "type": "array",
+                        "items":{
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "createdAt": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "admin": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "UserAddress":{
+                "type": "array",
+                "items":{
+                    "properties": {
+                        "rua": {
+                            "type": "string"
+                        },
+                        "numero": {
+                            "type": "number"
+                        },
+                        "complemento": {
+                            "type": "string"
+                        },
+                        "CEP": {
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ProductFavs":{
+                "type": "array",
+                "items":{
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

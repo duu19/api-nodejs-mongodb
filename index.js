@@ -7,6 +7,7 @@ const produto = require("./src/router/produto-router"); // rotas produtos
 const categoria = require("./src/router/categoria-router"); // rotas categorias
 const carrinho = require("./src/router/carrinho-router"); // rotas carrinho
 const pedido = require("./src/router/pedido-router"); // rotas pedidos
+const docs = require("./src/router/docs-router"); // rota swagger
 
 const app = express();
 const port = 3021;
@@ -22,6 +23,7 @@ app.use("/produto", produto);
 app.use("/categoria", categoria);
 app.use("/carrinho", carrinho);
 app.use("/pedido", pedido);
+app.use("/docs", docs);
 
 app.get("/", (req, res) => {
     res.send({
