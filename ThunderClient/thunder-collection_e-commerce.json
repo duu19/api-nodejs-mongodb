@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "e-commerce",
-    "dateExported": "2023-04-12T21:47:30.890Z",
+    "dateExported": "2023-04-13T23:22:24.330Z",
     "version": "1.1",
     "folders": [
         {
@@ -236,12 +236,12 @@
             "method": "POST",
             "sortNum": 130000,
             "created": "2023-04-08T19:35:02.204Z",
-            "modified": "2023-04-11T13:59:21.013Z",
+            "modified": "2023-04-13T16:44:54.509Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"pizzaSabor\": \"Bauru\",\n  \"descricao\": \"presunto, mussarela, requeijão, pimenta, azeite, oregáno, cebola e tomates picados\",\n  \"tamanho\": \"grande\",\n  \"precoUnidade\": 55,\n  \"imagem\": \"pizza-calabresa.png\",\n  \"refrigerante\": \"sim\",\n  \"bordaRecheada\": \"sim\"\n}",
+                "raw": "{\n  \"pizzaSabor\": \"4 Queijos\",\n  \"descricao\": \"parmesão, mussarela, requeijão, pimenta, azeite, oregáno, cebola e tomates picados\",\n  \"tamanho\": \"grande\",\n  \"precoUnidade\": 55,\n  \"imagem\": \"pizza-4queijos.png\",\n  \"refrigerante\": \"sim\",\n  \"bordaRecheada\": \"não\"\n}",
                 "form": []
             },
             "auth": {
@@ -255,16 +255,16 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "0bfaa52b-5aa4-430f-9bb9-aaaed02e3eac",
             "name": "update",
-            "url": "{{baseurl}}{{port}}/produto/update/643426a6c70fe66b91fc8b86",
+            "url": "{{baseurl}}{{port}}/produto/update/643831867ec8b10adcf6000e",
             "method": "PUT",
             "sortNum": 140000,
             "created": "2023-04-08T19:45:39.870Z",
-            "modified": "2023-04-11T21:27:51.170Z",
+            "modified": "2023-04-13T16:45:24.095Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"pizzaSabor\": \"Lombo com catupiry\"\n}",
+                "raw": "{\n  \"pizzaSabor\": \"4 Queijos simples\"\n}",
                 "form": []
             },
             "auth": {
@@ -278,12 +278,18 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "0bfaa52b-5aa4-430f-9bb9-aaaed02e3eac",
             "name": "delete",
-            "url": "",
-            "method": "GET",
+            "url": "{{baseurl}}{{port}}/produto/remove/643831867ec8b10adcf6000e",
+            "method": "DELETE",
             "sortNum": 150000,
             "created": "2023-04-08T19:46:44.399Z",
-            "modified": "2023-04-08T19:46:44.399Z",
-            "headers": []
+            "modified": "2023-04-13T16:46:03.169Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
         },
         {
             "_id": "4167154d-ba12-4b51-8a4d-36e78253c2a0",
@@ -308,11 +314,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "c1c806a2-e456-4baa-90cf-252327530543",
             "name": "findbyid",
-            "url": "{{baseurl}}{{port}}/categoria/find/643323862ff72302e0316e8b",
+            "url": "{{baseurl}}{{port}}/categoria/findById/64332a7fa9f642e18d6a6e9e",
             "method": "GET",
             "sortNum": 170000,
             "created": "2023-04-09T20:42:08.014Z",
-            "modified": "2023-04-09T20:44:00.695Z",
+            "modified": "2023-04-13T16:49:39.928Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -330,12 +336,12 @@
             "method": "POST",
             "sortNum": 180000,
             "created": "2023-04-09T20:42:43.348Z",
-            "modified": "2023-04-11T21:29:52.946Z",
+            "modified": "2023-04-13T16:49:51.457Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nome\": \"Assada + complementos\"\n}",
+                "raw": "{\n  \"nome\": \"teste\"\n}",
                 "form": []
             },
             "auth": {
@@ -349,16 +355,16 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "c1c806a2-e456-4baa-90cf-252327530543",
             "name": "update",
-            "url": "{{baseurl}}{{port}}/categoria/update/643323792ff72302e0316e88",
+            "url": "{{baseurl}}{{port}}/categoria/update/643832af93d971c78e79cbfd",
             "method": "PUT",
             "sortNum": 190000,
             "created": "2023-04-09T20:44:06.751Z",
-            "modified": "2023-04-12T21:00:28.111Z",
+            "modified": "2023-04-13T16:50:12.357Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nome\": \"Assada\"\n}",
+                "raw": "{\n  \"nome\": \"testeupdate\"\n}",
                 "form": []
             },
             "auth": {
@@ -372,11 +378,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "c1c806a2-e456-4baa-90cf-252327530543",
             "name": "delete",
-            "url": "{{baseurl}}{{port}}/categoria/remove/643323862ff72302e0316e8b",
+            "url": "{{baseurl}}{{port}}/categoria/remove/643832af93d971c78e79cbfd",
             "method": "DELETE",
             "sortNum": 200000,
             "created": "2023-04-09T20:47:15.984Z",
-            "modified": "2023-04-09T20:47:50.864Z",
+            "modified": "2023-04-13T16:50:19.402Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -390,11 +396,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "0bfaa52b-5aa4-430f-9bb9-aaaed02e3eac",
             "name": "addcategoria",
-            "url": "{{baseurl}}{{port}}/produto/addCategoria/643567b9959c713bdf46d42c",
+            "url": "{{baseurl}}{{port}}/produto/addCategoria/643426a6c70fe66b91fc8b86",
             "method": "POST",
             "sortNum": 210000,
             "created": "2023-04-09T21:08:25.905Z",
-            "modified": "2023-04-12T21:02:19.054Z",
+            "modified": "2023-04-13T16:46:43.854Z",
             "headers": [],
             "params": [],
             "body": {
@@ -413,16 +419,16 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "0bfaa52b-5aa4-430f-9bb9-aaaed02e3eac",
             "name": "removecategoria",
-            "url": "{{baseurl}}{{port}}/produto/removeCategoria/64332a7fa9f642e18d6a6e9e",
+            "url": "{{baseurl}}{{port}}/produto/removeCategoria/643426a6c70fe66b91fc8b86",
             "method": "DELETE",
             "sortNum": 220000,
             "created": "2023-04-09T21:18:27.714Z",
-            "modified": "2023-04-09T21:31:26.995Z",
+            "modified": "2023-04-13T16:47:16.838Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"_id\": \"64332a7fa9f642e18d6a6e9e\"\n}",
+                "raw": "{\n \"_id\": \"643323792ff72302e0316e88\"\n}",
                 "form": []
             },
             "auth": {
@@ -440,12 +446,12 @@
             "method": "POST",
             "sortNum": 230000,
             "created": "2023-04-10T01:44:37.469Z",
-            "modified": "2023-04-12T21:17:48.469Z",
+            "modified": "2023-04-13T16:57:56.559Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"produtos\": [\n    {\"_id\": \"6433730082f02f21ee3fa9\", \"quantidade\": 1}\n    ]\n}",
+                "raw": "{\n  \"produtos\": [\n    {\"_id\": \"643426a6c70fe66b91fc8b86\", \"quantidade\": 1}\n    ],\n    \"precoTotal\": \"R$ 70,00\",\n    \"entrega\": \"grátis\",\n    \"userId\": \"6437fb5bf4b47a0f81663858\"\n    \n}",
                 "form": []
             },
             "auth": {
@@ -459,11 +465,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "c3d915e3-4511-480e-9b2d-fa3b6a6021db",
             "name": "findbyid",
-            "url": "{{baseurl}}{{port}}/carrinho/find/64341ca33a32ade2de9d80c5",
+            "url": "{{baseurl}}{{port}}/carrinho/findById/6438349493d971c78e79cc07",
             "method": "GET",
             "sortNum": 240000,
             "created": "2023-04-10T14:27:45.959Z",
-            "modified": "2023-04-10T14:28:35.376Z",
+            "modified": "2023-04-13T16:58:30.815Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -499,12 +505,12 @@
             "method": "PUT",
             "sortNum": 260000,
             "created": "2023-04-10T14:33:33.656Z",
-            "modified": "2023-04-10T14:41:42.377Z",
+            "modified": "2023-04-13T17:01:06.377Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"produtos\": [\n      {\n        \"_id\": \"643373008172f02f21ee3fa9\",\n        \"quantidade\": 2\n      }\n    ],\n    \"precoTotal\": \"R$250.00\",\n    \"entrega\": \"grátis\"\n  }",
+                "raw": "{\n    \"produtos\": [\n      {\n        \"_id\": \"643373008172f02f21ee3fa9\",\n        \"quantidade\": 2\n      }\n    ],\n    \"precoTotal\": \"R$ 250,00\",\n    \"entrega\": \"R$ 00,00\"\n  }",
                 "form": []
             },
             "auth": {
@@ -518,11 +524,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "c3d915e3-4511-480e-9b2d-fa3b6a6021db",
             "name": "delete",
-            "url": "{{baseurl}}{{port}}/carrinho/remove/64341eceac4919ef77ec80b1",
+            "url": "{{baseurl}}{{port}}/carrinho/remove/6438349493d971c78e79cc07",
             "method": "DELETE",
             "sortNum": 270000,
             "created": "2023-04-10T14:38:36.972Z",
-            "modified": "2023-04-10T14:40:19.646Z",
+            "modified": "2023-04-13T17:01:25.345Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -640,12 +646,12 @@
             "method": "POST",
             "sortNum": 330000,
             "created": "2023-04-10T20:20:37.685Z",
-            "modified": "2023-04-12T00:58:20.435Z",
+            "modified": "2023-04-13T18:58:59.935Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"produtos\": [\n    {\"_id\": \"643373008172f02f21ee3fa9\", \"quantidade\": 2}\n    ],\n    \"precoTotal\": \"R$100,00\",\n    \"entrega\": \"grátis\",\n    \"concluido\": true\n}",
+                "raw": "{\n  \"produtos\": [\n    {\"_id\": \"643373008172f02f21ee3fa9\", \"quantidade\": 2}\n    ],\n    \"precoTotal\": \"R$ 200,00\",\n    \"entrega\": \"grátis\",\n    \"concluido\": false\n}",
                 "form": []
             },
             "auth": {
@@ -659,11 +665,11 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "9a2fee7e-5573-4ce8-9ad0-62a26251831e",
             "name": "delete",
-            "url": "{{baseurl}}{{port}}/pedido/remove/6431c3bf9533957e459122da ",
+            "url": "{{baseurl}}{{port}}/pedido/remove/6435db4f2a38d6491c0825ed",
             "method": "DELETE",
             "sortNum": 340000,
             "created": "2023-04-10T20:20:49.110Z",
-            "modified": "2023-04-12T19:48:35.600Z",
+            "modified": "2023-04-13T18:58:40.611Z",
             "headers": [],
             "params": [],
             "auth": {
@@ -677,16 +683,16 @@
             "colId": "20eb6052-1984-454f-8bfd-9f52604b135f",
             "containerId": "9a2fee7e-5573-4ce8-9ad0-62a26251831e",
             "name": "update",
-            "url": "{{baseurl}}{{port}}/pedido/updateStatus/64347031c90a0275c79416bd",
+            "url": "{{baseurl}}{{port}}/pedido/updateStatus/643850f3db9623ffc39cc393",
             "method": "PATCH",
             "sortNum": 350000,
             "created": "2023-04-10T20:21:15.762Z",
-            "modified": "2023-04-12T19:26:48.179Z",
+            "modified": "2023-04-13T18:59:14.724Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"concluido\": false\n}",
+                "raw": "{\n  \"concluido\": true\n}",
                 "form": []
             },
             "auth": {

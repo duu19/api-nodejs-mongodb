@@ -39,5 +39,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`server on: http://localhost:${port}`);
+    console.log(`server on: http://localhost:${port}, swagger: http://localhost:3021/docs/api-docs/`);
 });

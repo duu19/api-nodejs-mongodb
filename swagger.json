@@ -103,7 +103,8 @@
                     }
                 }
             }
-        },"/usuario/findById/{id}":{
+        },
+        "/usuario/findById/{id}":{
             "get":{
                 "security": [
                     {
@@ -763,8 +764,1044 @@
                     }
                 }
             }
+        },
+        "/auth/login":{
+            "post":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Realizar login e gerar um token válido.",
+                "description": "Realizar login como um usuário cadastrado.",
+                "tags": ["Login"],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "email":{
+                                            "type":"string"
+                                        },
+                                        "senha":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Login efetuado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum usuário encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/produto/findAll":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Buscar todos os produtos registrados na API.",
+                "description": "Rota que exibe e lista todos os produtos salvos na API.",
+                "tags": ["Produtos"],
+                "parameters": [
+                    {
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },{
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Ok. Efetuado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "$ref":"#/components/schemas/Produtos"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found. Nenhum produto encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/produto/findById/{id}":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Exibe um produto que corresponde ao ID informado.",
+                "description": "Rota para localizar um produto específico através do ID informado.",
+                "tags": ["Produtos"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok. Exibe um produto que corresponde ao ID.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum produto encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+                
+            }
+        },
+        "/produto/create":{
+            "post":{
+                "summary": "Cadastrar um novo produto na API.",
+                "description": "Rota para criar um novo produto dentro da API.",
+                "tags": ["Produtos"],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "201":{
+                        "description":"Ok. Produto criado com sucesso."
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/produto/update/{id}":{
+            "put":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Atualizar um produto existente.",
+                "description": "Rota para localizar um produto através do ID informado e alterá-lo.",
+                "tags": ["Produtos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Produto atualizado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum produto encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            } 
+        },
+        "/produto/remove/{id}":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover um produto.",
+                "description": "Rota para remover um produto específico através do ID informado.",
+                "tags": ["Produtos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Ok. Produto removido com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum produto encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/produto/addCategoria/{id}":{
+            "post":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Adicionar uma categoria ao usuário.",
+                "description": "Rota para adicionar uma nova categoria ao usuário selecionado.",
+                "tags": ["Produtos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Categorias"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "201":{
+                        "description":"Ok. Categoria adicionada com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhuma categoria encontrada.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/produto/removeCategoria/{id}":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover uma categoria do produto.",
+                "description": "Rota para remover uma categoria do produto selecionado.",
+                "tags": ["Produtos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "_id":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Categoria removida com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Produtos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhuma categoria encontrada.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/pedido/findAll":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Buscar todos os pedidos registrados na API.",
+                "description": "Rota que exibe e lista todos os pedidos salvos na API.",
+                "tags": ["Pedidos"],
+                "parameters": [
+                    {
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },{
+                        "in":"query",
+                        "schema":{
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Ok. Pedido efetuado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "items":{
+                                        "type":"object",
+                                        "$ref":"#/components/schemas/Pedidos"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Not Found. Nenhum pedido encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "message":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pedido/findById/{id}":{
+            "get":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Exibe um pedido que corresponde ao ID informado.",
+                "description": "Rota para localizar um pedido específico através do ID informado.",
+                "tags": ["Pedidos"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok. Exibe um pedido que corresponde ao ID.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum pedido encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+                
+            }
+        },
+        "/pedido/create":{
+            "post":{
+                "summary": "Registrar um novo pedido na API.",
+                "description": "Rota para criar um novo pedido dentro da API.",
+                "tags": ["Pedidos"],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "201":{
+                        "description":"Ok. Pedido criado com sucesso."
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/pedido/remove/{id}":{
+            "delete":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Remover um pedido.",
+                "description": "Rota para remover um pedido específico através do ID informado.",
+                "tags": ["Pedidos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Ok. Pedido removido com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum pedido encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "/pedido/updateStatus/{id}":{
+            "patch":{
+                "security": [
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "summary": "Atualizar a situação do pedido existente.",
+                "description": "Rota para atualizar o status do pedido.",
+                "tags": ["Pedidos"],
+                "parameters":[
+                    {
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        },
+                        "name": "id"
+                    }
+                ],
+                "requestBody":
+                {
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        },
+                        "required": true
+                },
+                "responses":{
+                    "200":{
+                        "description":"Ok. Pedido atualizado com sucesso.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "$ref": "#/components/schemas/Pedidos"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized. Erro de autenticação, ocorreu algum erro com o token.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "404": {
+                        "description": "Not Found. Nenhum pedido encontrado.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    },
+                    "500": {
+                        "description": "Internal Server Error. Ocorreu algum erro no servidor, tente novamente mais tarde.",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    }
+                }
+            } 
         }
-
     },
     "components": {
         "securitySchemes": {
@@ -864,6 +1901,86 @@
                         },
                         "createdAt": {
                             "type": "string"
+                        }
+                    }
+                }
+            },
+            "Produtos":{
+                "type": "object",
+                "properties": {
+                    "pizzaSabor": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "tamanho": {
+                        "type": "string"
+                    },
+                    "precoUnidade": {
+                        "type": "number"
+                    },
+                    "imagem": {
+                        "type": "string"
+                    },
+                    "refrigerante": {
+                        "type": "string"
+                    },
+                    "bordaRecheada": {
+                        "type": "string"
+                    },
+                    "categorias": {
+                        "type": "array",
+                        "items":{
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "createdAt": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Categorias":{
+                "type": "array",
+                "items":{
+                    "properties": {
+                        "nome": {
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "Pedidos":{
+                "type": "array",
+                "items":{
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "quantidade": {
+                            "type": "number"
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        },
+                        "precoTotal": {
+                            "type": "string"
+                        },
+                        "entrega": {
+                            "type": "string"
+                        },
+                        "userId": {
+                            "type": "string"
+                        },
+                        "concluido": {
+                            "type": "boolean"
                         }
                     }
                 }
