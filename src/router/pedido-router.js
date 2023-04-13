@@ -9,7 +9,7 @@ const paginacao = require("../middleware/paginacao-middleware");
 router.get("/findById/:id", authMiddleware, validarIdParams, pedidoController.findPedidoByIdController);
 router.get("/findAll", authMiddleware, paginacao, pedidoController.findAllPedidosController);
 // patch
-router.patch("/updateStatus/:id", authMiddleware, validarIdParams,pedidoController.updateStatusPedidoController);
+router.patch("/updateStatus/:id", authMiddleware, validarIdParams, pedidoController.updateStatusPedidoController);
 // post 
 router.post("/create", authMiddleware, validarProdutosCarrinhoPedido, validarPedidos, pedidoController.createPedidoController);
 // delete

@@ -2,9 +2,9 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Pizzaria",
-        "description": "API Completa desenvolvida com NodeJs, Express e MongoDB que retrata um e-commerce relacionado a uma pizzaria.",
+        "description": "API Rest desenvolvida com NodeJs, Express e MongoDB que retrata um e-commerce relacionado a uma pizzaria.",
         "contact": {
-            "name": "Eduardo",
+            "name": "Eduardo Henrique",
             "email": "duardohenriqe19@gmail.com"
         },
         "version": "1.0.0"

@@ -26,6 +26,7 @@ const deleteProductService = (id) => {
     return Produto.findByIdAndRemove(id);
 };
 
+// adicionar uma categoria ao produto
 const addCategoriaProductService = (id, categoria) => {
     return Produto.findOneAndUpdate(
         {
@@ -45,7 +46,7 @@ const addCategoriaProductService = (id, categoria) => {
     );
 }
 
-// corrigir 
+// remover categoria do produto
 const removeCategoriaProductService = (id, categoria) => {
     return Produto.findOneAndUpdate(
         {
@@ -53,7 +54,7 @@ const removeCategoriaProductService = (id, categoria) => {
         },
         {
             $pull: {
-                categoria: {
+                categorias: {
                     _id: categoria._id,
                 },
             },

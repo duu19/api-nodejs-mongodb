@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config(); // dotenv antes de qlqr arquivo (security - substituir)
+const cors = require("cors"); // cors - chrome
 const connectToDatabase = require("./src/database/database"); // conexão mongodb
 const usuario = require("./src/router/user-router"); // rotas usuário
 const auth = require("./src/router/auth-router");
@@ -13,6 +14,12 @@ const app = express();
 const port = 3021;
 
 app.use(express.json());
+app.use(cors(
+    {
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    }
+));
 
 connectToDatabase(); // conectando ao banco
 

@@ -19,14 +19,14 @@ const createPedidoService = (body) => {
 
 const removePedidoService = (id) => {
     if(!mongoose.Types.ObjectId.isValid(id)){
-        console.log("ID DO CARALHO???");
+        console.log("ww??");
       }else {
         return Pedido.findByIdAndRemove(id);
       }
 };
 
 const updateStatusPedidoService = (id) => {
-  return Pedido.findOneAndUpdate({ _id: id}, { $set: { concluido: true } });
+    return Pedido.findOneAndUpdate({ _id: id}, { $set: { concluido: true } });
 };
 
 
