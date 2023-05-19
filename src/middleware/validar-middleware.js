@@ -144,9 +144,6 @@ const validarPedidos = (req, res, next) => {
     if(!req.body.precoTotal){
         erros.push("precoTotal");
     }
-    if(!req.body.entrega){
-        erros.push("entrega");
-    }
     if(req.body.concluido == undefined){
         erros.push("concluido");
     }
@@ -167,9 +164,6 @@ const validarCarrinhos = (req, res, next) => {
 
     if(!req.body.precoTotal){
         erros.push("precoTotal");
-    }
-    if(!req.body.entrega){
-        erros.push("entrega");
     }
 
     if(erros.length == 0){
